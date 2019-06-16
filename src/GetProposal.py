@@ -70,9 +70,9 @@ class GetProposal:
             exit()
         
         instrument = "V20"
-        measureTime="2019-  06-17"
+        measureTime="2019-06-17"
         dataset_url = api_url + "Proposals/findByInstrumentAndDate?instrument=" + \
-            instrument + "&measureTime=" + measureTime
+            instrument + "&measureTime=" + measureTime + "&access_token="+token
 
 
 if __name__ == "__main__":
