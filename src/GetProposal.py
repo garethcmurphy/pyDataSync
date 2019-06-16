@@ -59,8 +59,8 @@ class GetProposal:
         if platform.system() == 'Darwin':
             config = self.fetch_login_from_keyring()
         else:
-            password = getpass.getpass()
-            config = {"username": self.username, "password": password}
+            # password = getpass.getpass()
+            # config = {"username": self.username, "password": password}
             config = json.load("user.json")
         # config = self.fetch_login_from_keyring()
 
