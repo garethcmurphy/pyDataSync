@@ -23,7 +23,7 @@ class GetProposal:
             print('darwin')
             username = "brightness"
             username = "ingestor"
-            username = self.username
+            #username = self.username
             password = keyring.get_password('scicat', username)
             if not password:
                 print("No password found in keychain, please enter it now to store it.")
@@ -43,8 +43,8 @@ class GetProposal:
 
     def fetch(self):
         base_url = "https://scicatapi.esss.dk/"
-        if self.hostname == "CI0020036":
-            base_url = "http://localhost:3000/"
+        #if self.hostname == "CI0020036":
+        #    base_url = "http://localhost:3000/"
         user_url = base_url + "auth/msad"
         api_url = base_url + "api/v3/"
         ingestor_url = api_url+"Users/login"
@@ -57,6 +57,7 @@ class GetProposal:
             config = {"username": self.username, "password": password}
         #config = self.fetch_login_from_keyring()
 
+        print(login_url)
         r = requests.post(login_url, data=config)
 
         login_response = r.json()
@@ -68,11 +69,15 @@ class GetProposal:
         else:
             print("Login failed - exiting")
             exit()
-        
+
         instrument = "V20"
-        measureTime="2019-06-17"
+        measureTime = "2019-06-17"
         dataset_url = api_url + "Proposals/findByInstrumentAndDate?instrument=" + \
             instrument + "&measureTime=" + measureTime + "&access_token="+token
+
+        print(dataset_url)
+        r = requests.get(dataset_url)
+        print(r.json())
 
 
 if __name__ == "__main__":
