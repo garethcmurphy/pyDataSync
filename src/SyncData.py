@@ -44,7 +44,7 @@ class SyncData:
             host_config = conf.lookup('login')
             if 'proxycommand' in host_config:
                 proxy = paramiko.ProxyCommand(host_config['proxycommand'])
-        t = paramiko.Transport((hostname, port,proxy))
+        t = paramiko.Transport((hostname, port,sock=proxy))
         keyname=home+"/.ssh/id_ed25519"
         print(username)
         print(keyname)
