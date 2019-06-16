@@ -5,6 +5,7 @@ import pwd
 import json
 from GetProposal import GetProposal
 from scp import SCPClient
+import logging
 
 class SyncData:
     def __init__(self):
@@ -18,6 +19,7 @@ class SyncData:
             self.hostname=data['hostname']
 
     def put(self):
+        logging.basicConfig(level=logging.DEBUG)
         hostname = self.hostname
         print(hostname)
         username = self.username
