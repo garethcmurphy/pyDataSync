@@ -44,12 +44,12 @@ class SyncData:
             host_config = conf.lookup('login')
             if 'proxycommand' in host_config:
                 proxy = paramiko.ProxyCommand(host_config['proxycommand'])
-        t = paramiko.Transport((hostname, port,sock=proxy))
+        t = paramiko.Transport((hostname, port))
         keyname=home+"/.ssh/id_ed25519"
         print(username)
         print(keyname)
         ed25519_key = paramiko.Ed25519Key.from_private_key_file(keyname)
-        t.connect(username=username,  pkey=ed25519_key)
+        t.connect(username=username,  pkey=ed25519_key, sock=proxy)
         sftp = paramiko.SFTPClient.from_transport(t)
         sftp.put(mypath, remotepath)
 
