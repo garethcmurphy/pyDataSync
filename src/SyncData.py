@@ -4,6 +4,7 @@ import os
 import pwd
 import json
 from GetProposal import GetProposal
+from scp import SCPClient
 
 class SyncData:
     def __init__(self):
@@ -37,6 +38,7 @@ class SyncData:
         from os.path import expanduser
         home = expanduser("~")
         ssh_config_file = os.path.expanduser("~/.ssh/config")
+        proxy=None
         if os.path.exists(ssh_config_file):
             conf = paramiko.SSHConfig()
             with open(ssh_config_file) as f:
@@ -44,14 +46,25 @@ class SyncData:
             host_config = conf.lookup('login')
             if 'proxycommand' in host_config:
                 proxy = paramiko.ProxyCommand(host_config['proxycommand'])
-        t = paramiko.Transport((hostname, port))
+                print(proxy)
         keyname=home+"/.ssh/id_ed25519"
         print(username)
         print(keyname)
         ed25519_key = paramiko.Ed25519Key.from_private_key_file(keyname)
-        t.connect(username=username,  pkey=ed25519_key, sock=proxy)
-        sftp = paramiko.SFTPClient.from_transport(t)
-        sftp.put(mypath, remotepath)
+        #t = paramiko.Transport((hostname, port))
+        #t.connect(username=username,  pkey=ed25519_key)
+        #sftp = paramiko.SFTPClient.from_transport(t)
+        #sftp.put(mypath, remotepath)
+        #sftp.close()
+        #t.close()
+
+        ssh = paramiko.SSHClient()
+        ssh.load_system_host_keys()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(hostname, username=username, pkey=ed25519_key, sock=proxy)
+        scp = SCPClient(ssh.get_transport())
+        scp.put(mypath, recursive=True,remote_path=remotepath)
+        scp.close()
 
 
 if __name__ == "__main__":
