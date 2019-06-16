@@ -3,6 +3,7 @@ import paramiko
 import os
 import pwd
 import json
+from GetProposal import GetProposal
 
 class SyncData:
     def __init__(self):
@@ -25,6 +26,11 @@ class SyncData:
         mypath=os.getcwd()+'/x.txt'
         print(mypath)
         remotepath='/users/detector/experiments/V20/DEFAULT'
+
+        prop = GetProposal()
+
+        remote_directory = prop.fetch()
+        print("remote_dir",remote_directory)
         remotepath='/users/'+username+'/x.txt'
         print(remotepath)
 

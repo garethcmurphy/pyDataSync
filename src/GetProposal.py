@@ -79,7 +79,14 @@ class GetProposal:
 
         print(dataset_url)
         r = requests.get(dataset_url)
-        print(r.json())
+        prop = r.json()
+        print(prop)
+        proposal_id ="DEFAULT"
+        if 'findByInstrumentAndDate' in prop:
+            result=prop['findByInstrumentAndDate']
+            if 'proposalId' in result:
+                proposal_id = result['proposalId']
+        return proposal_id
 
 
 if __name__ == "__main__":
