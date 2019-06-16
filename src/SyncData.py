@@ -36,7 +36,15 @@ class SyncData:
 
         from os.path import expanduser
         home = expanduser("~")
-        t = paramiko.Transport((hostname, port))
+        ssh_config_file = os.path.expanduser("~/.ssh/config")
+        if os.path.exists(ssh_config_file):
+            conf = paramiko.SSHConfig()
+            with open(ssh_config_file) as f:
+                conf.parse(f)
+            host_config = conf.lookup(host)
+            if 'proxycommand' in host_config:
+                proxy = paramiko.ProxyCommand(host_config['proxycommand'])
+        t = paramiko.Transport((hostname, port,proxy))
         keyname=home+"/.ssh/id_ed25519"
         print(username)
         print(keyname)
