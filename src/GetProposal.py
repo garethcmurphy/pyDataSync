@@ -19,12 +19,17 @@ class GetProposal:
     def __init__(self):
         self.get_details()
 
+    def get_config(self):
+        with open('user.json') as json_file:
+            data = json.load(json_file)
+            return data
+
     def fetch_login_from_keyring(self):
         if platform.system() == 'Darwin':
             print('darwin')
             username = "brightness"
             username = "ingestor"
-            #username = self.username
+            # username = self.username
             password = keyring.get_password('scicat', username)
             if not password:
                 print("No password found in keychain, please enter it now to store it.")
@@ -44,7 +49,7 @@ class GetProposal:
 
     def fetch(self):
         base_url = "https://scicatapi.esss.dk/"
-        #if self.hostname == "CI0020036":
+        # if self.hostname == "CI0020036":
         #    base_url = "http://localhost:3000/"
         user_url = base_url + "auth/msad"
         api_url = base_url + "api/v3/"
@@ -56,7 +61,8 @@ class GetProposal:
         else:
             password = getpass.getpass()
             config = {"username": self.username, "password": password}
-        #config = self.fetch_login_from_keyring()
+            config = json.load("user.json")
+        # config = self.fetch_login_from_keyring()
 
         print(login_url)
         r = requests.post(login_url, data=config)
@@ -81,9 +87,9 @@ class GetProposal:
         r = requests.get(dataset_url)
         prop = r.json()
         print(prop)
-        proposal_id ="DEFAULT"
+        proposal_id= "DEFAULT"
         if 'findByInstrumentAndDate' in prop:
-            result=prop['findByInstrumentAndDate']
+            result= prop['findByInstrumentAndDate']
             if 'proposalId' in result:
                 proposal_id = result['proposalId']
         return proposal_id
