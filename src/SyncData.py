@@ -41,7 +41,7 @@ class SyncData:
             conf = paramiko.SSHConfig()
             with open(ssh_config_file) as f:
                 conf.parse(f)
-            host_config = conf.lookup(host)
+            host_config = conf.lookup('login')
             if 'proxycommand' in host_config:
                 proxy = paramiko.ProxyCommand(host_config['proxycommand'])
         t = paramiko.Transport((hostname, port,proxy))
