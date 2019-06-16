@@ -61,7 +61,7 @@ class GetProposal:
         else:
             # password = getpass.getpass()
             # config = {"username": self.username, "password": password}
-            config = json.load("user.json")
+            config = self.get_config()
         # config = self.fetch_login_from_keyring()
 
         print(login_url)
