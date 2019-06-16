@@ -3,7 +3,7 @@ import paramiko
 import os
 import pwd
 import json
-from .GetProposal import GetProposal
+from GetProposal import GetProposal
 
 class SyncData:
     def __init__(self):
