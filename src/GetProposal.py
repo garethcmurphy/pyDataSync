@@ -8,6 +8,7 @@ import keyring
 import urllib.parse
 import platform
 import socket
+import datetime
 
 
 class GetProposal:
@@ -71,7 +72,8 @@ class GetProposal:
             exit()
 
         instrument = "V20"
-        measureTime = "2019-06-17"
+        measureTime = "2019-06-16T04:17:06.237Z"
+        measureTime = datetime.datetime.now().isoformat()
         dataset_url = api_url + "Proposals/findByInstrumentAndDate?instrument=" + \
             instrument + "&measureTime=" + measureTime + "&access_token="+token
 
