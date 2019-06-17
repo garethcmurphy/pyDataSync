@@ -1,7 +1,5 @@
 """unit test"""
-import sys
-import conftest
-#sys.path.append("./src")
+# import conftest
 from get_files import GetFiles
 
 

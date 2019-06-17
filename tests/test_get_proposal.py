@@ -1,6 +1,4 @@
 """unit test"""
-import sys
-# sys.path.append("./src")
 from get_proposal import GetProposal
 
 

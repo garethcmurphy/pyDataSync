@@ -1,6 +1,4 @@
 """unit test"""
-import sys
-#sys.path.append("./src")
 
 from sync_data import SyncData
 
