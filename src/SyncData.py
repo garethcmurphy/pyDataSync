@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-import paramiko
 import os
 import pwd
-import json
-from GetProposal import GetProposal
-from GetFiles import GetFiles
-from scp import SCPClient
 import logging
+import paramiko
+import json
+from get_proposal import GetProposal
+from get_files import GetFiles
+from scp import SCPClient
 
 
 class SyncData:

@@ -35,5 +35,5 @@ class GetFiles:
 
 if __name__ == "__main__":
     FILEMGR = GetFiles()
-    file_array2 = FILEMGR.get()
-    print(file_array2)
+    FA = FILEMGR.get()
+    print(FA)
