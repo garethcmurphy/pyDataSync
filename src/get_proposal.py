@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """Fetch proposal"""
-import requests
-import json
 import os
 import pwd
 import getpass
-import keyring
-import urllib.parse
 import platform
 import socket
 import datetime
+import json
 
+import keyring
+import urllib.parse
+import requests
 
 class GetProposal:
     username = "anonymoususer"
