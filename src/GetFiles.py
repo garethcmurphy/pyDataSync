@@ -5,15 +5,17 @@ import os
 
 class GetFiles:
     """Fetch recently modified files"""
-    base_directory = "string"
-    
+    base_directory = "/data/kafka-to-nexus"
+
     def get(self):
         """fetch recently modified files"""
         now = datetime.datetime.now()
         ago = now-datetime.timedelta(minutes=60)
 
-        search_directory = "/data/kafka-to-nexus"
-        search_directory = os.getcwd()+"/demo"
+        if os.path.isdir(self.base_directory):
+            search_directory = self.base_directory
+        else:
+            search_directory = os.getcwd()+"/demo"
 
         file_array = list()
 
@@ -32,6 +34,6 @@ class GetFiles:
 
 
 if __name__ == "__main__":
-    file_mgr = GetFiles()
-    file_array2 = file_mgr.get()
+    FILEMGR = GetFiles()
+    file_array2 = FILEMGR.get()
     print(file_array2)

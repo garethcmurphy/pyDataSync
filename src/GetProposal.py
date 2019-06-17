@@ -21,11 +21,13 @@ class GetProposal:
         self.get_details()
 
     def get_config(self):
+        """get config from json file"""
         with open('user.json') as json_file:
             data = json.load(json_file)
             return data
 
     def fetch_login_from_keyring(self):
+        """if on darwin fetch login from keyring"""
         if platform.system() == 'Darwin':
             print('darwin')
             username = "brightness"
@@ -43,6 +45,7 @@ class GetProposal:
         return config
 
     def get_details(self):
+        """get details from os"""
         self.username = getpass.getuser()
         self.name = pwd.getpwuid(os.getuid())[4]
         self.email = self.name.replace(" ", ".")+"@esss.se"
@@ -50,6 +53,7 @@ class GetProposal:
         return self.hostname
 
     def fetch(self):
+        """fetch proposal from scicat"""
         base_url = "https://scicatapi.esss.dk/"
         # if self.hostname == "CI0020036":
         #    base_url = "http://localhost:3000/"
