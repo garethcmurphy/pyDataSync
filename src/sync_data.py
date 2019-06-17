@@ -2,8 +2,8 @@
 import os
 import pwd
 import logging
-import paramiko
 import json
+import paramiko
 from get_proposal import GetProposal
 from get_files import GetFiles
 from scp import SCPClient
@@ -49,8 +49,8 @@ class SyncData:
         proxy = None
         if os.path.exists(ssh_config_file):
             conf = paramiko.SSHConfig()
-            with open(ssh_config_file) as f:
-                conf.parse(f)
+            with open(ssh_config_file) as ssh_conf:
+                conf.parse(ssh_conf)
             host_config = conf.lookup('login')
             if 'proxycommand' in host_config:
                 print(host_config['proxycommand'])
@@ -70,7 +70,7 @@ class SyncData:
             basename = os.path.basename(mypath)
             remotepath = remote_directory + '/' + basename
             print(remotepath)
-            scp.put(mypath, recursive=True,remote_path=remotepath)
+            scp.put(mypath, recursive=True, remote_path=remotepath)
         scp.close()
 
 
