@@ -8,6 +8,10 @@ class GetFiles:
     """Fetch recently modified files"""
     base_directory = "/data/kafka-to-nexus"
 
+    def set_base(self, base):
+        self.base_directory = base
+
+
     def get(self):
         """fetch recently modified files"""
         now = datetime.datetime.now()

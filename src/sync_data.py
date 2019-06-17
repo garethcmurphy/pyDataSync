@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""sync data"""
 import os
 import pwd
 import logging
@@ -25,6 +26,7 @@ class SyncData:
         return data
 
     def put(self):
+        """sync data"""
         logging.basicConfig(level=logging.DEBUG)
         hostname = self.hostname
         print(hostname)
@@ -37,6 +39,7 @@ class SyncData:
 
         prop = GetProposal()
         file_mgr = GetFiles()
+        file_mgr.set_base('./demo')
         file_array = file_mgr.get()
 
         remote_directory = basepath + prop.fetch()
