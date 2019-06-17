@@ -10,13 +10,14 @@ import logging
 class SyncData:
     def __init__(self):
         self.fullname=pwd.getpwuid(os.getuid())[4]
-        self.username=self.fullname.replace(" ", ".").lower()
+        # self.username=self.fullname.replace(" ", ".").lower()
         self.get_config()
 
     def get_config(self):
         with open('config.json') as json_file:  
             data = json.load(json_file)
             self.hostname=data['hostname']
+            self.username=data['username']
 
     def put(self):
         logging.basicConfig(level=logging.DEBUG)
