@@ -13,6 +13,7 @@ import urllib.parse
 import requests
 
 class GetProposal:
+    """fetch proposal from scicat"""
     username = "anonymoususer"
     name = "Anonymous User"
     email = "anonymous.user@mail.fjref.dk"
