@@ -24,7 +24,6 @@ class SyncData:
         hostname = self.hostname
         print(hostname)
         username = self.username
-        port = 22
 
         mypath='/data/kafka-to-nexus/nicos000187.hdf'
         mypath=os.getcwd()+'/x.txt'
