@@ -4,6 +4,7 @@ import os
 
 
 class GetFiles:
+    """Fetch recently modified files"""
     base_directory = "string"
     
     def get(self):

@@ -10,6 +10,7 @@ import logging
 
 
 class SyncData:
+    """Sync data to remote machine"""
     def __init__(self):
         self.fullname = pwd.getpwuid(os.getuid())[4]
         # self.username=self.fullname.replace(" ", ".").lower()

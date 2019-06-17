@@ -1,2 +1,2 @@
 [Master]
-init-hook='sys.path = list(); sys.path.append("./Lib/site-packages/")'
+init-hook='sys.path = list(); sys.path.append("./src/")'

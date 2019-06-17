@@ -12,6 +12,7 @@ import datetime
 
 
 class GetProposal:
+    """Fetch proposal from scicat"""
     username = "anonymoususer"
     name = "Anonymous User"
     email = "anonymous.user@mail.fjref.dk"
