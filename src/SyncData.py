@@ -20,6 +20,7 @@ class SyncData:
             data = json.load(json_file)
             self.hostname = data['hostname']
             self.username = data['username']
+        return data
 
     def put(self):
         logging.basicConfig(level=logging.DEBUG)
