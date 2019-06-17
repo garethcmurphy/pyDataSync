@@ -2,9 +2,8 @@
 import sys, os
 sys.path.append("./src")
 
-from SyncData import SyncData
+from GetFiles import GetFiles
 def test_sync():
 
-    sync = SyncData()
-    conf =sync.get_config()
-    assert( isinstance( conf['hostname' ],str) )
+    sync = GetFiles()
+    assert( isinstance( sync.base_directory ,str) )

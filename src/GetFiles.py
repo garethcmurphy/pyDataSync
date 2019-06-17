@@ -4,6 +4,8 @@ import os
 
 
 class GetFiles:
+    base_directory = "string"
+    
     def get(self):
         now = datetime.datetime.now()
         ago = now-datetime.timedelta(minutes=60)
