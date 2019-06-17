@@ -53,12 +53,6 @@ class SyncData:
         print(username)
         print(keyname)
         ed25519_key = paramiko.Ed25519Key.from_private_key_file(keyname)
-        #t = paramiko.Transport((hostname, port))
-        #t.connect(username=username,  pkey=ed25519_key)
-        #sftp = paramiko.SFTPClient.from_transport(t)
-        #sftp.put(mypath, remotepath)
-        #sftp.close()
-        #t.close()
 
         ssh = paramiko.SSHClient()
         ssh.load_system_host_keys()
