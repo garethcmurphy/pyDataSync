@@ -17,6 +17,7 @@ class SyncData:
         self.get_config()
 
     def get_config(self):
+        """Read config from local json file"""
         with open('config.json') as json_file:
             data = json.load(json_file)
             self.hostname = data['hostname']
