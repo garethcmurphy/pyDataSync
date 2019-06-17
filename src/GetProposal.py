@@ -46,6 +46,7 @@ class GetProposal:
         self.name = pwd.getpwuid(os.getuid())[4]
         self.email = self.name.replace(" ", ".")+"@esss.se"
         self.hostname = socket.gethostname()
+        return self.hostname
 
     def fetch(self):
         base_url = "https://scicatapi.esss.dk/"
