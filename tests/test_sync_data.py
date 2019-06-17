@@ -1,8 +1,9 @@
 """unit test"""
 import sys
-sys.path.append("./src")
+#sys.path.append("./src")
 
 from sync_data import SyncData
+
 
 def test_sync():
     """unit test"""
