@@ -4,6 +4,7 @@ import os
 import pwd
 import json
 from GetProposal import GetProposal
+from GetFiles import GetFiles   
 from scp import SCPClient
 import logging
 
@@ -28,14 +29,18 @@ class SyncData:
         mypath='/data/kafka-to-nexus/nicos000187.hdf'
         mypath=os.getcwd()+'/x.txt'
         print(mypath)
-        remotepath='/users/detector/experiments/V20/DEFAULT'
+        basepath='/users/detector/experiments/V20/'
 
         prop = GetProposal()
+        file_mgr = GetFiles()
+        file_array = file_mgr.get()
 
-        remote_directory = prop.fetch()
+
+
+        basepath='/users/'+username +'/'
+        print(basepath)
+        remote_directory = basepath + prop.fetch()
         print("remote_dir",remote_directory)
-        remotepath='/users/'+username+'/x.txt'
-        print(remotepath)
 
         from os.path import expanduser
         home = expanduser("~")
@@ -59,7 +64,12 @@ class SyncData:
         ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh.connect(hostname, username=username, pkey=ed25519_key, sock=proxy)
         scp = SCPClient(ssh.get_transport())
-        scp.put(mypath, recursive=True,remote_path=remotepath)
+        for file in file_array:
+            mypath=file
+            basename = os.path.basename(mypath)
+            remotepath = remote_directory +'/'  + basename
+            print(remotepath)
+            # scp.put(mypath, recursive=True,remote_path=remotepath)
         scp.close()
 
 
