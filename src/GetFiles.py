@@ -29,6 +29,5 @@ class GetFiles:
 
 if __name__ == "__main__":
     file_mgr = GetFiles()
-    file_array =file_mgr.get()
+    file_array = file_mgr.get()
     print(file_array)
-

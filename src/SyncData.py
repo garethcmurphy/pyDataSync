@@ -4,21 +4,22 @@ import os
 import pwd
 import json
 from GetProposal import GetProposal
-from GetFiles import GetFiles   
+from GetFiles import GetFiles
 from scp import SCPClient
 import logging
 
+
 class SyncData:
     def __init__(self):
-        self.fullname=pwd.getpwuid(os.getuid())[4]
+        self.fullname = pwd.getpwuid(os.getuid())[4]
         # self.username=self.fullname.replace(" ", ".").lower()
         self.get_config()
 
     def get_config(self):
-        with open('config.json') as json_file:  
+        with open('config.json') as json_file:
             data = json.load(json_file)
-            self.hostname=data['hostname']
-            self.username=data['username']
+            self.hostname = data['hostname']
+            self.username = data['username']
 
     def put(self):
         logging.basicConfig(level=logging.DEBUG)
@@ -26,26 +27,24 @@ class SyncData:
         print(hostname)
         username = self.username
 
-        mypath='/data/kafka-to-nexus/nicos000187.hdf'
-        mypath=os.getcwd()+'/x.txt'
+        mypath = '/data/kafka-to-nexus/nicos000187.hdf'
+        mypath = os.getcwd()+'/x.txt'
         print(mypath)
-        basepath='/users/detector/experiments/V20/'
+        basepath = '/users/detector/experiments/V20/'
 
         prop = GetProposal()
         file_mgr = GetFiles()
         file_array = file_mgr.get()
 
-
-
-        basepath='/users/'+username +'/'
+        basepath = '/users/'+username + '/'
         print(basepath)
         remote_directory = basepath + prop.fetch()
-        print("remote_dir",remote_directory)
+        print("remote_dir", remote_directory)
 
         from os.path import expanduser
         home = expanduser("~")
         ssh_config_file = os.path.expanduser("~/.ssh/config")
-        proxy=None
+        proxy = None
         if os.path.exists(ssh_config_file):
             conf = paramiko.SSHConfig()
             with open(ssh_config_file) as f:
@@ -54,7 +53,7 @@ class SyncData:
             if 'proxycommand' in host_config:
                 print(host_config['proxycommand'])
                 proxy = paramiko.ProxyCommand(host_config['proxycommand'])
-        keyname=home+"/.ssh/id_ed25519"
+        keyname = home+"/.ssh/id_ed25519"
         print(username)
         print(keyname)
         ed25519_key = paramiko.Ed25519Key.from_private_key_file(keyname)
@@ -65,9 +64,9 @@ class SyncData:
         ssh.connect(hostname, username=username, pkey=ed25519_key, sock=proxy)
         scp = SCPClient(ssh.get_transport())
         for file in file_array:
-            mypath=file
+            mypath = file
             basename = os.path.basename(mypath)
-            remotepath = remote_directory +'/'  + basename
+            remotepath = remote_directory + '/' + basename
             print(remotepath)
             # scp.put(mypath, recursive=True,remote_path=remotepath)
         scp.close()
