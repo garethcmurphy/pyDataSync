@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""fetch recently modified files to sync"""
 import datetime
 import os
 

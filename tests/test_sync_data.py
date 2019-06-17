@@ -2,7 +2,7 @@
 import sys
 sys.path.append("./src")
 
-from SyncData import SyncData
+from sync_data import SyncData
 
 def test_sync():
     """unit test"""

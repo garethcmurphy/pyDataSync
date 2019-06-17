@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""Fetch proposal""
 import requests
 import json
 import os
