@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch proposal""
+"""Fetch proposal"""
 import requests
 import json
 import os
@@ -13,7 +13,6 @@ import datetime
 
 
 class GetProposal:
-    """Fetch proposal from scicat"""
     username = "anonymoususer"
     name = "Anonymous User"
     email = "anonymous.user@mail.fjref.dk"
