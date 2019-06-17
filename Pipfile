@@ -8,6 +8,7 @@ paramiko = "*"
 keyring = "*"
 requests = "*"
 scp = "*"
+pytest = "*"
 
 [dev-packages]
 "autopep8" = "*"

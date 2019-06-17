@@ -36,9 +36,8 @@ class SyncData:
         file_mgr = GetFiles()
         file_array = file_mgr.get()
 
-        basepath = '/users/'+username + '/'
-        print(basepath)
         remote_directory = basepath + prop.fetch()
+        remote_directory = '/users/'+username + '/'
         print("remote_dir", remote_directory)
 
         from os.path import expanduser
@@ -68,7 +67,7 @@ class SyncData:
             basename = os.path.basename(mypath)
             remotepath = remote_directory + '/' + basename
             print(remotepath)
-            # scp.put(mypath, recursive=True,remote_path=remotepath)
+            scp.put(mypath, recursive=True,remote_path=remotepath)
         scp.close()
 
 
