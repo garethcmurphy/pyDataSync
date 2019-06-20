@@ -126,3 +126,4 @@ dmypy.json
 config.json
 user.json
 x.py
+.vscode/settings.json
