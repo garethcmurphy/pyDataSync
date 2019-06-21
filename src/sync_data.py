@@ -7,7 +7,7 @@ import json
 import paramiko
 from get_proposal import GetProposal
 from get_files import GetFiles
-from AbstractSync import AbstractSync
+from abstract_sync import AbstractSync
 from scp import SCPClient
 
 

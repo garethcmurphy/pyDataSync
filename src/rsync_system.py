@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """add files via rsync"""
 import subprocess
-from AbstractSync import AbstractSync
+from abstract_sync import AbstractSync
 from get_files import GetFiles
 
 
