@@ -1,5 +1,4 @@
 class AbstractSync:
-    pass
 
-    def get(self):
+    def put(self):
         pass

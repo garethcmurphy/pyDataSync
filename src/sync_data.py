@@ -7,10 +7,11 @@ import json
 import paramiko
 from get_proposal import GetProposal
 from get_files import GetFiles
+from AbstractSync import AbstractSync
 from scp import SCPClient
 
 
-class SyncData:
+class SyncData(AbstractSync):
     """Sync data to remote machine"""
     def __init__(self):
         self.fullname = pwd.getpwuid(os.getuid())[4]
