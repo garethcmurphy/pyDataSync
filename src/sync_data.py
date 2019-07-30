@@ -5,14 +5,15 @@ import pwd
 import logging
 import json
 import paramiko
+from scp import SCPClient
 from get_proposal import GetProposal
 from get_files import GetFiles
 from abstract_sync import AbstractSync
-from scp import SCPClient
 
 
 class SyncData(AbstractSync):
     """Sync data to remote machine"""
+
     def __init__(self):
         self.fullname = pwd.getpwuid(os.getuid())[4]
         # self.username=self.fullname.replace(" ", ".").lower()
@@ -79,5 +80,5 @@ class SyncData(AbstractSync):
 
 
 if __name__ == "__main__":
-    sync = SyncData()
-    sync.put()
+    SYNC = SyncData()
+    SYNC.put()

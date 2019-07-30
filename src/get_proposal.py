@@ -9,7 +9,6 @@ import datetime
 import json
 
 import keyring
-import urllib.parse
 import requests
 
 class GetProposal:
@@ -72,9 +71,9 @@ class GetProposal:
         # config = self.fetch_login_from_keyring()
 
         print(login_url)
-        r = requests.post(login_url, data=config)
+        response = requests.post(login_url, data=config)
 
-        login_response = r.json()
+        login_response = response.json()
         print(login_response)
         if "id" in login_response:
             token = login_response["id"]
@@ -85,13 +84,13 @@ class GetProposal:
             exit()
 
         instrument = "V20"
-        measureTime = datetime.datetime.now().isoformat()
+        measure_time = datetime.datetime.now().isoformat()
         dataset_url = api_url + "Proposals/findByInstrumentAndDate?instrument=" + \
-            instrument + "&measureTime=" + measureTime + "&access_token="+token
+            instrument + "&measureTime=" + measure_time + "&access_token="+token
 
         print(dataset_url)
-        r = requests.get(dataset_url)
-        prop = r.json()
+        response = requests.get(dataset_url)
+        prop = response.json()
         print(prop)
         proposal_id = "DEFAULT"
         if 'findByInstrumentAndDate' in prop:
@@ -102,5 +101,5 @@ class GetProposal:
 
 
 if __name__ == "__main__":
-    scicatman = GetProposal()
-    scicatman.fetch()
+    SCI = GetProposal()
+    SCI.fetch()

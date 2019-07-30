@@ -9,6 +9,7 @@ class GetFiles:
     base_directory = "/data/kafka-to-nexus"
 
     def set_base(self, base):
+        """setter for base directory"""
         self.base_directory = base
 
 
